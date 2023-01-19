@@ -6,3 +6,31 @@ query GetBooks {
     pages
   }
 }
+
+#-----------------------------------
+query GetBook {
+  book(id: 2) {
+    id
+    title
+    genre
+    pages
+  }
+}
+
+#-----------------------------------
+query GetAuthors {
+  authors {
+    id
+    age
+    name
+  }
+}
+
+#------------------------------------
+query GetAuthor {
+  author(id: 2) {
+    id
+    name
+    age
+  }
+}
