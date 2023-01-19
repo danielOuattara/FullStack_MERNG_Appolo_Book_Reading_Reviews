@@ -4,7 +4,6 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 
 const typeDefs = `#graphql
 
-
   type Book {
     id: ID!
     title: String
@@ -14,6 +13,7 @@ const typeDefs = `#graphql
 
   type Query {
     books: [Book]
+    book(id: ID!): Book
   }
 `;
 
@@ -33,6 +33,9 @@ const authors = [
 const resolvers = {
   Query: {
     books: () => books,
+    book: (parent, arg, ctx) => {
+      return books.find((book) => book.id === arg.id);
+    },
   },
 };
 
