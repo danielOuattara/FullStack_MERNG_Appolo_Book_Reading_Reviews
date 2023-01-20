@@ -8,11 +8,12 @@ import Query from "./resolvers/QueryResolver.js";
 import Book from "./resolvers/BookResolver.js";
 import Author from "./resolvers/AuthorResolver.js";
 import { getAuthors, getBooks } from "./databaseFetcher/fetchDatabase.js";
+import Mutation from "./resolvers/Mutation.js";
 //---------------------------------------------------------
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers: { Query, Book, Author },
+  resolvers: { Query, Book, Author, Mutation },
 });
 
 mongoose.set("strictQuery", false);
