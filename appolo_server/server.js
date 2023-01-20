@@ -2,56 +2,13 @@ import * as dotenv from "dotenv";
 dotenv.config();
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
-import { books, authors } from "./data.js";
 import mongoose from "mongoose";
+import typeDefs from "./schema/schema.js";
+import Query from "./resolvers/QueryResolver.js";
+import Book from "./resolvers/BookResolver.js";
+import Author from "./resolvers/AuthorResolver.js";
 
-const typeDefs = `#graphql
-
-  type Book {
-    id: ID!
-    title: String
-    genre: String
-    pages: Int
-    author: Author
-  }
-  type Author {
-    id: ID
-    name: String
-    age: Int
-    books: [Book]
-  }
-
-  type Query {
-    books: [Book]
-    book(id: ID!): Book
-    authors: [Author]
-    author(id: ID!): Author
-  }
-`;
-
-const resolvers = {
-  Query: {
-    books: () => books,
-    book: (parent, arg, ctx) => {
-      return books.find((book) => book.id === arg.id);
-    },
-    authors: () => authors,
-    author: (parent, arg, ctx) => {
-      return authors.find((author) => author.id === arg.id);
-    },
-  },
-
-  Book: {
-    author: (parent, arg, ctx) => {
-      return authors.find((author) => author.id === parent.authorId);
-    },
-  },
-  Author: {
-    books: (parent, arg, ctx) => {
-      return books.filter((book) => book.authorId === parent.id);
-    },
-  },
-};
+const resolvers = { Query, Book, Author };
 
 const server = new ApolloServer({
   typeDefs,
@@ -67,9 +24,9 @@ mongoose
   })
   .then(() => {
     console.log(
-      `Success: Database connected to:  ${process.env.DATABASE} database * * * `,
+      `Success: Database connected to: ${process.env.DATABASE} database * * *`,
     );
-    startStandaloneServer(server, {
+    return startStandaloneServer(server, {
       listen: { port: 4000 },
     }).then(({ url }) => {
       console.log(`🚀  Server ready at: ${url}`);
