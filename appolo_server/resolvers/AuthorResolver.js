@@ -1,6 +1,6 @@
 const Author = {
-  books: (parent, arg, ctx) => {
-    return ctx.books.filter((book) => book.authorId === parent.id);
+  books: async (parent, arg, ctx) => {
+    return await ctx.books.filter((book) => book.authorId === parent.id);
   },
 };
 

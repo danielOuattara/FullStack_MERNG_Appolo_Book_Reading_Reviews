@@ -2,12 +2,12 @@ import Book from "./../models/bookModel.js";
 import Author from "./../models/authorModel.js";
 
 const Mutation = {
-  addAuthor: (parent, args, ctx) => {
+  addAuthor: async (parent, args, ctx) => {
     console.log(args);
-    return Author.create(args);
+    return await Author.create(args);
   },
-  addBook: (parent, args, ctx) => {
-    return Book.create(args);
+  addBook: async (parent, args, ctx) => {
+    return await Book.create(args);
   },
 };
 

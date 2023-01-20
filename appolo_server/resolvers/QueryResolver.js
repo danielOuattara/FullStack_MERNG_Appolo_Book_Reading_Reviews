@@ -1,11 +1,11 @@
 const Query = {
-  books: (parent, arg, ctx) => ctx.books,
-  book: (parent, arg, ctx) => {
-    return ctx.books.find((book) => book.id === arg.id);
+  books: async (parent, arg, ctx) => await ctx.books,
+  book: async (parent, arg, ctx) => {
+    return await ctx.books.find((book) => book.id === arg.id);
   },
-  authors: (parent, arg, ctx) => ctx.authors,
-  author: (parent, arg, ctx) => {
-    return ctx.authors.find((author) => author.id === arg.id);
+  authors: async (parent, arg, ctx) => await ctx.authors,
+  author: async (parent, arg, ctx) => {
+    return await ctx.authors.find((author) => author.id === arg.id);
   },
 };
 

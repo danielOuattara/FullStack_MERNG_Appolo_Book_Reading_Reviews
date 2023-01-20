@@ -1,6 +1,6 @@
 const Book = {
-  author: (parent, arg, ctx) => {
-    return ctx.authors.find((author) => author.id === parent.authorId);
+  author: async (parent, arg, ctx) => {
+    return await ctx.authors.find((author) => author.id === parent.authorId);
   },
 };
 

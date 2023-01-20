@@ -72,7 +72,7 @@ query GetBook {
 
 #----------------------------------
 query GetAuthor {
-  author(id: "62c70660aa1a5300a33cc4ad") {
+  author(id: "63ca5f0a2df1f7927b4c2f06") {
     id
     age
     name
@@ -86,5 +86,31 @@ mutation AddAuthor {
     id
     name
     age
+  }
+}
+
+# ----------------------------------------------
+mutation AddBook {
+  addBook(
+    title: "Testing book 1"
+    authorId: "63ca5f0a2df1f7927b4c2f06"
+    genre: "comics"
+    pages: 234
+  ) {
+    id
+    genre
+    pages
+    title
+    author {
+      age
+      id
+      name
+      books {
+        id
+        genre
+        pages
+        title
+      }
+    }
   }
 }
