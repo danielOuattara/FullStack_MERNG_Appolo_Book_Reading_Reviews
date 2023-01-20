@@ -1,13 +1,13 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+import mongoose from "mongoose";
 //-------------------------------------------------------
 
-const bookSchema = new Schema({
+const bookSchema = new mongoose.Schema({
   title: String,
   genre: String,
   authorId: String,
   pages: Number,
 });
 
-//-------------------------------------------------------
-module.exports = mongoose.model("Book", bookSchema);
+const BookModel = mongoose.model("Book", bookSchema);
+
+export default BookModel;
