@@ -1,13 +1,11 @@
-import { books, authors } from "../data.js";
-
 const Query = {
-  books: () => books,
+  books: (parent, arg, ctx) => ctx.books,
   book: (parent, arg, ctx) => {
-    return books.find((book) => book.id === arg.id);
+    return ctx.books.find((book) => book.id === arg.id);
   },
-  authors: () => authors,
+  authors: (parent, arg, ctx) => ctx.authors,
   author: (parent, arg, ctx) => {
-    return authors.find((author) => author.id === arg.id);
+    return ctx.authors.find((author) => author.id === arg.id);
   },
 };
 
