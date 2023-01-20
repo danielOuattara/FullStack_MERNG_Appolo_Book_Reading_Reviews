@@ -58,6 +58,8 @@ const server = new ApolloServer({
   resolvers,
 });
 
+mongoose.set("strictQuery", false);
+
 mongoose
   .connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -67,13 +69,10 @@ mongoose
     console.log(
       `Success: Database connected to:  ${process.env.DATABASE} database * * * `,
     );
-    // app.listen(4000, () => {
-    //   console.log("Listening on http://localhost:4000/graphql?");
-    // });
-    const { url } = startStandaloneServer(server, {
+    startStandaloneServer(server, {
       listen: { port: 4000 },
+    }).then(({ url }) => {
+      console.log(`🚀  Server ready at: ${url}`);
     });
-
-    console.log(`🚀  Server ready at: ${url}`);
   })
   .catch((err) => console.log(err.message));
