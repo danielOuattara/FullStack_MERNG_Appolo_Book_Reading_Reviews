@@ -34,3 +34,18 @@ query GetAuthor {
     age
   }
 }
+
+#---------------------------------
+
+query GetAuthor {
+  authors {
+    id
+    name
+    age
+    books {
+      id
+      genre
+      pages
+    }
+  }
+}

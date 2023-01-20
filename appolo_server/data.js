@@ -1,4 +1,4 @@
-// dummy data
+//--------------------------------------------------
 const books = [
   {
     title: "Name of the wind",
@@ -58,4 +58,4 @@ const authors = [
   { id: "3", name: "Terry Pratchett", age: "66" },
 ];
 
-export { books, authors };
+export { authors, books };

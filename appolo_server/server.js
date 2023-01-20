@@ -37,6 +37,17 @@ const resolvers = {
       return authors.find((author) => author.id === arg.id);
     },
   },
+
+  Book: {
+    author: (parent, arg, ctx) => {
+      return authors.find((author) => author.id === parent.authorId);
+    },
+  },
+  Author: {
+    books: (parent, arg, ctx) => {
+      return books.filter((book) => book.authorId === parent.id);
+    },
+  },
 };
 
 const server = new ApolloServer({
