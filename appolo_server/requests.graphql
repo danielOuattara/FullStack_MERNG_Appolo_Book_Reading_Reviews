@@ -49,3 +49,32 @@ query GetAuthor {
     }
   }
 }
+
+#---------------------------------
+
+query GetAuthors {
+  authors {
+    id
+    age
+    name
+  }
+}
+
+#---------------------------------
+query GetBook {
+  book(id: "62c706edaa1a5300a33cc4b3") {
+    id
+    title
+    genre
+    pages
+  }
+}
+
+#----------------------------------
+query GetAuthor {
+  author(id: "62c70660aa1a5300a33cc4ad") {
+    id
+    age
+    name
+  }
+}
