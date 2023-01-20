@@ -2,16 +2,16 @@ const typeDefs = `#graphql
 
   type Book {
     id: ID!
-    title: String!
-    genre: String!
-    pages: Int!
-    author: Author!
+    title: String
+    genre: String
+    pages: Int
+    author: Author
   }
   
   type Author {
     id: ID!
-    name: String!
-    age: Int!
+    name: String
+    age: Int
     books: [Book]
   }
 
@@ -33,7 +33,7 @@ const typeDefs = `#graphql
       genre: String!
       pages: Int!
       authorId: ID!
-    ): Author
+    ): Book
   }
 `;
 
