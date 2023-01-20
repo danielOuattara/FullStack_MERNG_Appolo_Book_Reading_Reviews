@@ -1,6 +1,9 @@
+import * as dotenv from "dotenv";
+dotenv.config();
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 import { books, authors } from "./data.js";
+import mongoose from "mongoose";
 
 const typeDefs = `#graphql
 
@@ -55,8 +58,22 @@ const server = new ApolloServer({
   resolvers,
 });
 
-const { url } = await startStandaloneServer(server, {
-  listen: { port: 4000 },
-});
+mongoose
+  .connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log(
+      `Success: Database connected to:  ${process.env.DATABASE} database * * * `,
+    );
+    // app.listen(4000, () => {
+    //   console.log("Listening on http://localhost:4000/graphql?");
+    // });
+    const { url } = startStandaloneServer(server, {
+      listen: { port: 4000 },
+    });
 
-console.log(`🚀  Server ready at: ${url}`);
+    console.log(`🚀  Server ready at: ${url}`);
+  })
+  .catch((err) => console.log(err.message));
